@@ -8,6 +8,8 @@ public class G4JpaAssignmentApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(G4JpaAssignmentApplication.class, args);
-    }
+    
+
+   
 
 }
