@@ -10,4 +10,6 @@ public class G4JpaAssignmentApplication {
         SpringApplication.run(G4JpaAssignmentApplication.class, args);
     }
 
+    // Nive
+
 }
