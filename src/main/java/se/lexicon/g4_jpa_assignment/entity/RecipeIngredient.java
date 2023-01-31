@@ -3,6 +3,7 @@ package se.lexicon.g4_jpa_assignment.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se.lexicon.g4_jpa_assignment.Enum.Measurement;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
