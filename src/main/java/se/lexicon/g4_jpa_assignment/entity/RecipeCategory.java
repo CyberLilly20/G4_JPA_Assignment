@@ -1,6 +1,6 @@
 package se.lexicon.g4_jpa_assignment.entity;
 
-import javafx.scene.effect.SepiaTone;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
