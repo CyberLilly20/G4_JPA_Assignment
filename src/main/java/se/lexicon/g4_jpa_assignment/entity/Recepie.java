@@ -22,17 +22,41 @@ public class Recipe {
     int id ;
     @Column(nullable = false,length = 50)
     private String recipeName;
-    @OneToMany(mappedBy = "recepie")
+
+
+    @OneToMany(mappedBy = "recipe")
     private List<RecipeIngredient> recipeIngredients;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_instruction_id")
     private RecipeInstruction instruction;
 
 
+
+
     @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(name= "recipe_recipe_category", joinColumns = @JoinColumn(name = "recipe_id")
             ,inverseJoinColumns = @JoinColumn(name = "recipe_category_id"))
     private Set<RecipeCategory> catogries;
+
+
+
+
+
+    public void addCategory(RecipeCategory recipeCategory){
+
+        if (recipeCategory == null) throw new IllegalArgumentException("Recipe category is null");
+        if(catogries == null) catogries= new HashSet<>();
+        catogries.add(recipeCategory);
+    }
+
+
+    public void removeCategory(RecipeCategory recipeCategory){
+
+        if (recipeCategory == null) throw new IllegalArgumentException("Recipe category is null");
+        catogries.remove(recipeCategory);
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -56,4 +80,7 @@ public class Recipe {
                 ", catogries=" + catogries +
                 '}';
     }
+
+
+
 }
