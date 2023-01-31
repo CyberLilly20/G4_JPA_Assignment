@@ -1,4 +1,4 @@
-package entity;
+package se.lexicon.g4_jpa_assignment.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
