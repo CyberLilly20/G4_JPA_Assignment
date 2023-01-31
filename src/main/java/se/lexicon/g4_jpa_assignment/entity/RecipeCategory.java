@@ -25,6 +25,4 @@ public class RecipeCategory {
     @JoinTable(name= "recipe_recipe_category", joinColumns = @JoinColumn(name = "recipe_category_id")
             ,inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipe = new HashSet<>();
-
-
 }

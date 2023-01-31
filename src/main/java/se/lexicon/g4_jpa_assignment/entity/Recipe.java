@@ -25,8 +25,11 @@ public class Recipe {
     private String recipeName;
 
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,
+            CascadeType.REFRESH})
     private List<RecipeIngredient> recipeIngredients;
+
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_instruction_id")
     private RecipeInstruction instruction;
@@ -41,7 +44,26 @@ public class Recipe {
 
 
 
+//  private List<RecipeIngredient> recipeIngredients;
 
+    public void addRecipeIngredient(RecipeIngredient recipeIngredient){
+
+        if(recipeIngredient == null) throw new IllegalArgumentException("Recipe Ingredient cannot be null");
+        if (!recipeIngredients.contains(recipeIngredient)) recipeIngredients.add(recipeIngredient);
+        else
+            System.out.println("Duplicate !! Cannot Add the Ingredient ");
+
+    }
+
+    public void removeRecipeIngredient(RecipeIngredient recipeIngredient){
+
+        if(recipeIngredient == null) throw new IllegalArgumentException("Recipe Ingredient cannot be null");
+        if (recipeIngredients != null) recipeIngredients.remove(recipeIngredient);
+
+        else
+            System.out.println("Nothing found to remove !!");
+
+    }
 
     public void addCategory(RecipeCategory recipeCategory){
 

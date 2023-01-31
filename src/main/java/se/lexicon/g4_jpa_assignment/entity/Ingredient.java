@@ -2,14 +2,17 @@ package se.lexicon.g4_jpa_assignment.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Data
 @Entity
 public class Ingredient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(updatable = false)
     private int id;
     @Column(nullable = false, unique = true)
@@ -23,10 +26,4 @@ public class Ingredient {
 
     public Ingredient() {
     }
-    public Ingredient(String ingredientName)
-    {
-        this.ingredientName=ingredientName;
-    }
-
-
 }
