@@ -21,7 +21,8 @@ public class RecipeCategory {
     private int id;
     @Column(nullable = false)
     private String category;
-   /* @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "recipe_recipe_category")
-    private Set<Recipe> recipe = new HashSet<>();*/
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name= "recipe_recipe_category", joinColumns = @JoinColumn(name = "recipe_category_id")
+            ,inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+    private Set<Recipe> recipe = new HashSet<>();
 }

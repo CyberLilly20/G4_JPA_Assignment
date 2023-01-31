@@ -2,11 +2,11 @@ package se.lexicon.g4_jpa_assignment.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Data
 
@@ -18,4 +18,6 @@ public class RecipeInstruction {
     @Column(nullable = false)
     private String instructions;
 
+    public RecipeInstruction() {
+    }
 }
