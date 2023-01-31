@@ -24,5 +24,18 @@ public class RecipeCategory {
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name= "recipe_recipe_category", joinColumns = @JoinColumn(name = "recipe_category_id")
             ,inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-    private Set<Recipe> recipe = new HashSet<>();
+    private Set<Recipe> recipes = new HashSet<>();
+
+    public void addRecipe(Recipe recipe){
+        if(recipe == null) throw new IllegalArgumentException("Recipe was null");
+        recipes.add(recipe);
+
+    }
+
+    public void removeRecipe(Recipe recipe){
+        if (recipe == null) throw new IllegalArgumentException("Recipe is null");
+        recipes.remove(recipe);
+    }
+
+
 }
