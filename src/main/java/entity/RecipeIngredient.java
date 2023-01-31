@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Data
 @Entity
@@ -23,4 +23,6 @@ public class RecipeIngredient {
     private Measurement measurement;
     private Recipe recipe;
 
+    public RecipeIngredient() {
+    }
 }
