@@ -26,6 +26,10 @@ public class RecipeCategory {
             ,inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipes = new HashSet<>();
 
+    public RecipeCategory(String category) {
+        this.category = category;
+    }
+
     public void addRecipe(Recipe recipe){
         if(recipe == null) throw new IllegalArgumentException("Recipe was null");
         recipes.add(recipe);
