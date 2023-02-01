@@ -23,4 +23,8 @@ public class Ingredient {
 
     public Ingredient() {
     }
+
+    public Ingredient(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
 }
