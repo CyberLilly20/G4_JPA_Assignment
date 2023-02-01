@@ -20,4 +20,8 @@ public class RecipeInstruction {
 
     public RecipeInstruction() {
     }
+
+    public RecipeInstruction(String instructions) {
+        this.instructions = instructions;
+    }
 }
