@@ -6,58 +6,64 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id ;
-    @Column(nullable = false,length = 50)
+    int id;
+    @Column(nullable = false, length = 50)
     private String recipeName;
 
 
-    @OneToMany(mappedBy = "recipe",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,
+    @OneToMany(mappedBy = "recipe", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
             CascadeType.REFRESH})
     private List<RecipeIngredient> recipeIngredients;
 
-
-    @OneToOne(cascade = CascadeType.ALL)
+// Todo changes done here
+    @OneToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.PERSIST})
     @JoinColumn(name = "recipe_instruction_id")
     private RecipeInstruction instruction;
 
 
-
-
-    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(name= "recipe_recipe_category", joinColumns = @JoinColumn(name = "recipe_id")
-            ,inverseJoinColumns = @JoinColumn(name = "recipe_category_id"))
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "recipe_recipe_category", joinColumns = @JoinColumn(name = "recipe_id")
+            , inverseJoinColumns = @JoinColumn(name = "recipe_category_id"))
     private Set<RecipeCategory> catogries;
+
+
+    // TODO added a constructor for testing purpose
+
+    public Recipe() {
+    }
+
+    public Recipe(String recipeName) {
+        this.recipeName = recipeName;
+
+    }
 
 
 
 //  private List<RecipeIngredient> recipeIngredients;
+// Todo Changes done to handle null pointer exception
+    public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
 
-    public void addRecipeIngredient(RecipeIngredient recipeIngredient){
-
-        if(recipeIngredient == null) throw new IllegalArgumentException("Recipe Ingredient cannot be null");
+        if (recipeIngredient == null) throw new IllegalArgumentException("Recipe Ingredient cannot be null");
+        if (recipeIngredients == null) recipeIngredients= new ArrayList<>();
         if (!recipeIngredients.contains(recipeIngredient)) recipeIngredients.add(recipeIngredient);
         else
             System.out.println("Duplicate !! Cannot Add the Ingredient ");
 
     }
 
-    public void removeRecipeIngredient(RecipeIngredient recipeIngredient){
+    public void removeRecipeIngredient(RecipeIngredient recipeIngredient) {
 
-        if(recipeIngredient == null) throw new IllegalArgumentException("Recipe Ingredient cannot be null");
+        if (recipeIngredient == null) throw new IllegalArgumentException("Recipe Ingredient cannot be null");
         if (recipeIngredients != null) recipeIngredients.remove(recipeIngredient);
 
         else
@@ -65,20 +71,19 @@ public class Recipe {
 
     }
 
-    public void addCategory(RecipeCategory recipeCategory){
+    public void addCategory(RecipeCategory recipeCategory) {
 
         if (recipeCategory == null) throw new IllegalArgumentException("Recipe category is null");
-        if(catogries == null) catogries= new HashSet<>();
+        if (catogries == null) catogries = new HashSet<>();
         catogries.add(recipeCategory);
     }
 
 
-    public void removeCategory(RecipeCategory recipeCategory){
+    public void removeCategory(RecipeCategory recipeCategory) {
 
         if (recipeCategory == null) throw new IllegalArgumentException("Recipe category is null");
         catogries.remove(recipeCategory);
     }
-
 
 
     @Override
@@ -103,7 +108,6 @@ public class Recipe {
                 ", catogries=" + catogries +
                 '}';
     }
-
 
 
 }
