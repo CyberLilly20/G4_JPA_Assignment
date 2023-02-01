@@ -2,7 +2,6 @@ package se.lexicon.g4_jpa_assignment.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import se.lexicon.g4_jpa_assignment.Enum.Measurement;
 
 import javax.persistence.*;
@@ -16,14 +15,14 @@ public class RecipeIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "ingredient_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private Ingredient ingredient;
     private double amount;
     private Measurement measurement;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private Recipe recipe;
 
     public RecipeIngredient() {
     }
 }
+
