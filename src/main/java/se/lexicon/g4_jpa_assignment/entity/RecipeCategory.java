@@ -26,6 +26,8 @@ public class RecipeCategory {
             ,inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipes = new HashSet<>();
 
+
+
     public RecipeCategory(String category) {
         this.category = category;
     }
