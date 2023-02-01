@@ -3,7 +3,7 @@ package se.lexicon.g4_jpa_assignment.entity;
 import lombok.*;
 
 import javax.persistence.*;
-
+@AllArgsConstructor
 @Data
 @Entity
 public class Ingredient {
@@ -16,11 +16,10 @@ public class Ingredient {
     private String ingredientName;
 
 
-    public Ingredient(int id, String ingredientName) {
-        this.id = id;
-        this.ingredientName = ingredientName;
+    public Ingredient() {
     }
 
-    public Ingredient() {
+    public Ingredient(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 }
