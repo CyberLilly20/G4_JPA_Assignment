@@ -17,15 +17,15 @@ public interface IRecipeRepository extends CrudRepository<Recipe, Integer> {
 
     @Query("select a from Recipe  a inner join a.recipeIngredients b where b.ingredient =:to")
 
-    List<Recipe> selectByIngr(@Param("to") Ingredient name);
+    List<Recipe> selectByIngredient(@Param("to") Ingredient name);
 
-    @Query("select a from Recipe  a inner join a.catogries b where b.category =:to")
+    @Query("select a from Recipe  a inner join a.categories b where b.category =:to")
 
     List<Recipe> selectByCategory(@Param("to") String name);
 
 
 
-    @Query("select a from Recipe  a inner join a.catogries b where b.category in(:to)")
+    @Query("select a from Recipe  a inner join a.categories b where b.category in(:to)")
 
     List<Recipe> selectByRecipe(@Param("to") List<String> category);
 }

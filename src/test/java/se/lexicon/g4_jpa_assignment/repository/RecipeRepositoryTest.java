@@ -19,7 +19,7 @@ public class RecipeRepositoryTest {
 
 
     @Autowired
-    IRecipeRepository testRecepieRepository;
+    IRecipeRepository testRecipeRepository;
     @Autowired
     RecipeCategoryRepository testRecipeCategoryRepository;
     @Autowired
@@ -68,14 +68,14 @@ public class RecipeRepositoryTest {
 
 
         Recipe recipe = new Recipe("Pizza");
-        createdRecipe = testRecepieRepository.save(recipe);
+        createdRecipe = testRecipeRepository.save(recipe);
 
 
         createdRecipe.addCategory(createdRecipeCategory);
         createdRecipe.setInstruction(createdRecipeInstruction);
         createdRecipe.addRecipeIngredient(createdRecipeIngredient);
 
-        testRecepieRepository.save(createdRecipe);
+        testRecipeRepository.save(createdRecipe);
 
         createdRecipeIngredient.setRecipe(createdRecipe);
         testRecipeIngredientRepository.save(createdRecipeIngredient);
@@ -84,7 +84,7 @@ public class RecipeRepositoryTest {
 
     @Test
     public void test_findById() {
-        Optional<Recipe> recipeTest = testRecepieRepository.findById(createdRecipe.getId());
+        Optional<Recipe> recipeTest = testRecipeRepository.findById(createdRecipe.getId());
         assertTrue(recipeTest.isPresent());
         Recipe actualData = recipeTest.get();
         Recipe expectedData = createdRecipe;
@@ -96,8 +96,8 @@ public class RecipeRepositoryTest {
     public void test_findAll() {
 
 
-        Iterable recepie1 = testRecepieRepository.findAll();
-        assertEquals(createdRecipe, recepie1.iterator().next());
+        Iterable recipe1 = testRecipeRepository.findAll();
+        assertEquals(createdRecipe, recipe1.iterator().next());
 
     }
 
@@ -105,15 +105,15 @@ public class RecipeRepositoryTest {
     @Test
     public void test_Update() {
 
-        assertEquals(1, testRecepieRepository.count());
+        assertEquals(1, testRecipeRepository.count());
     }
 
 
     @Test
-    public void selectbyRecipeName() {
+    public void selectByRecipeName() {
 
         List<Recipe> recipeList;
-        recipeList = testRecepieRepository.findByRecipeNameContaining("Pizza");
+        recipeList = testRecipeRepository.findByRecipeNameContaining("Pizza");
 
         for (Recipe recipe : recipeList) {
 
@@ -130,7 +130,7 @@ public class RecipeRepositoryTest {
 
         List<Recipe> recipeList;
 
-        recipeList = testRecepieRepository.selectByIngr(createdRecipeIngredient.getIngredient());
+        recipeList = testRecipeRepository.selectByIngredient(createdRecipeIngredient.getIngredient());
 
 
         for (Recipe recipe : recipeList) {
@@ -148,7 +148,7 @@ public class RecipeRepositoryTest {
 
         List<Recipe> recipeList;
 
-        recipeList = testRecepieRepository.selectByCategory(createdRecipeCategory.getCategory());
+        recipeList = testRecipeRepository.selectByCategory(createdRecipeCategory.getCategory());
 
         System.out.println(recipeList);
 
@@ -169,7 +169,7 @@ public class RecipeRepositoryTest {
 
         System.out.println("list      " + list);
 
-        List<Recipe> recipeList = testRecepieRepository.selectByRecipe(list);
+        List<Recipe> recipeList = testRecipeRepository.selectByRecipe(list);
 
 
         for (Recipe recipe : recipeList) {
@@ -184,8 +184,8 @@ public class RecipeRepositoryTest {
     @Test
     public void test_delete() {
 
-        testRecepieRepository.delete(createdRecipe);
-        Optional<Recipe> recipeTest = testRecepieRepository.findById(createdRecipe.getId());
+        testRecipeRepository.delete(createdRecipe);
+        Optional<Recipe> recipeTest = testRecipeRepository.findById(createdRecipe.getId());
         assertTrue(!recipeTest.isPresent());
 
     }

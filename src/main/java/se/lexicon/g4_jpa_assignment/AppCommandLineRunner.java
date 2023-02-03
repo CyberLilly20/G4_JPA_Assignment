@@ -8,7 +8,7 @@ import se.lexicon.g4_jpa_assignment.entity.Recipe;
 import se.lexicon.g4_jpa_assignment.entity.RecipeCategory;
 import se.lexicon.g4_jpa_assignment.entity.RecipeIngredient;
 import se.lexicon.g4_jpa_assignment.entity.RecipeInstruction;
-import se.lexicon.g4_jpa_assignment.repository.IRecepie;
+import se.lexicon.g4_jpa_assignment.repository.IRecipeRepository;
 import se.lexicon.g4_jpa_assignment.repository.RecipeCategoryRepository;
 import se.lexicon.g4_jpa_assignment.repository.RecipeIngredientRepository;
 import se.lexicon.g4_jpa_assignment.repository.RecipeInstructionRepository;
@@ -16,7 +16,7 @@ import se.lexicon.g4_jpa_assignment.repository.RecipeInstructionRepository;
 @Component
 public class AppCommandLineRunner implements CommandLineRunner {
     @Autowired
-    IRecepie recepieRepository;
+    IRecipeRepository recipeRepository;
     @Autowired
     RecipeCategoryRepository recipeCategoryRepository;
     @Autowired
@@ -41,7 +41,7 @@ public class AppCommandLineRunner implements CommandLineRunner {
 
 
         Recipe recipe = new Recipe("Name1");
-        Recipe createdRecipe = recepieRepository.save(recipe);
+        Recipe createdRecipe = recipeRepository.save(recipe);
 
 
 
@@ -49,7 +49,7 @@ public class AppCommandLineRunner implements CommandLineRunner {
         createdRecipe.setInstruction(createdRecipeInstruction);
         createdRecipe.addRecipeIngredient(createdRecipeIngredient);
 
-        recepieRepository.save(createdRecipe);
+        recipeRepository.save(createdRecipe);
 
     }
 }
