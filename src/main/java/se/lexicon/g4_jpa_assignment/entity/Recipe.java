@@ -2,7 +2,6 @@ package se.lexicon.g4_jpa_assignment.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -34,7 +33,7 @@ public class Recipe {
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "recipe_recipe_category", joinColumns = @JoinColumn(name = "recipe_id")
             , inverseJoinColumns = @JoinColumn(name = "recipe_category_id"))
-    private Set<RecipeCategory> catogries;
+    private Set<RecipeCategory> categories;
 
 
     // TODO added a constructor for testing purpose
@@ -74,15 +73,15 @@ public class Recipe {
     public void addCategory(RecipeCategory recipeCategory) {
 
         if (recipeCategory == null) throw new IllegalArgumentException("Recipe category is null");
-        if (catogries == null) catogries = new HashSet<>();
-        catogries.add(recipeCategory);
+        if (categories == null) categories = new HashSet<>();
+        categories.add(recipeCategory);
     }
 
 
     public void removeCategory(RecipeCategory recipeCategory) {
 
         if (recipeCategory == null) throw new IllegalArgumentException("Recipe category is null");
-        catogries.remove(recipeCategory);
+        categories.remove(recipeCategory);
     }
 
 
@@ -91,12 +90,12 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return id == recipe.id && Objects.equals(recipeName, recipe.recipeName) && Objects.equals(recipeIngredients, recipe.recipeIngredients) && Objects.equals(instruction, recipe.instruction) && Objects.equals(catogries, recipe.catogries);
+        return id == recipe.id && Objects.equals(recipeName, recipe.recipeName) && Objects.equals(recipeIngredients, recipe.recipeIngredients) && Objects.equals(instruction, recipe.instruction) && Objects.equals(categories, recipe.categories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, recipeName, recipeIngredients, instruction, catogries);
+        return Objects.hash(id, recipeName, recipeIngredients, instruction, categories);
     }
 
     @Override
@@ -105,7 +104,7 @@ public class Recipe {
                 "id=" + id +
                 ", recipeName='" + recipeName + '\'' +
                 ", instruction=" + instruction +
-                ", catogries=" + catogries +
+                ", categories=" + categories +
                 '}';
     }
 
