@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
-public class recipeRepositoryTest {
+public class RecipeRepositoryTest {
 
 
     @Autowired
@@ -178,29 +178,7 @@ public class recipeRepositoryTest {
         }
 
 
-        // Recipe recipe11= recipeList.get(0);
-        // int id=recipe11.getId();
-
-        //  assertEquals(id,createdRecipe.getId());
-
     }
-
-
-    // selectByRecipe(@Param("to") int id);
-
-/*
-@Test
-    public void selectByRecipe(RecipeCategory category){
-
-        List<RecipeCategory> recipeList;
-
-        recipeList= testRecepieRepository.selectByRecipe(createdRecipeCategory);
-        System.out.println("Inside recipe list"+recipeList);
-
-        //assertEquals(id,createdRecipe.getId());
-
-    }
-*/
 
 
     @Test
